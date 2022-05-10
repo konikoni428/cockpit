@@ -149,7 +149,7 @@
 
             <input data-check="{entry._id}" type="checkbox" class="uk-margin-small-right uk-checkbox">
 
-            <div class="uk-text-truncate uk-margin-small-left" each="{field,idy in fields}" if="{ entry[field.name] !== null && entry[field.name] !== undefined && field.name != '_modified' && field.name != '_created' }">
+            <div class="uk-text-truncate uk-margin-small-left uk-margin-right { field.options.display_class }" each="{field,idy in fields}" if="{ entry[field.name] !== null && entry[field.name] !== undefined && field.name != '_modified' && field.name != '_created' }">
                 <a class="uk-link-muted" href="{ App.route('/collections/entry/'+parent.collection.name+'/'+parent.entry._id) }">
                     <raw content="{ App.Utils.renderValue(field.type, parent.entry[field.name], field) }" if="{parent.entry[field.name] !== undefined}"></raw>
                     <span class="uk-icon-eye-slash uk-text-muted" if="{parent.entry[field.name] === undefined}"></span>
@@ -200,8 +200,8 @@
 
         this.entry = opts.entry;
         this.collection = opts.collection || {};
-        this.fields = this._fields.slice(0, 2);
-        this.extrafields = this._fields.length > 2 ? this._fields.slice(2) : [];
+        this.fields = this._fields.slice(0, 3);
+        this.extrafields = this._fields.length > 3 ? this._fields.slice(3) : [];
         this.imagefield = opts.imagefield;
 
         this.on('mount', function() {
